@@ -1,10 +1,15 @@
 "use client";
 import React from "react";
-import { SelectInput } from "./SelectInput";
 import { useConfigureTest } from "../hooks/useConfigureTest";
+import { SelectInput } from "./SelectInput";
+
+type ConfigureTestProps = {
+  setNumberOfOutput: React.Dispatch<React.SetStateAction<string>>;
+};
 
 const voltageOptions = [
   { value: "50", label: "50 Volt" },
+  { value: "100", label: "100 Volt" },
   { value: "200", label: "200 Volt" },
   { value: "500", label: "500 Volt" },
   { value: "1000", label: "1000 Volt" },
@@ -16,7 +21,9 @@ const outputOptions = Array.from({ length: 8 }, (_, i) => ({
   label: `${i + 1}`,
 }));
 
-export const ConfigureTest: React.FC = () => {
+export const ConfigureTest: React.FC<ConfigureTestProps> = ({
+  setNumberOfOutput,
+}) => {
   const {
     formValues,
     isLoading,
@@ -25,9 +32,18 @@ export const ConfigureTest: React.FC = () => {
     handleTestClick,
   } = useConfigureTest();
 
+  // Update the parent's state when numberOfOutput changes
+  React.useEffect(() => {
+    setNumberOfOutput(formValues.numberOfOutput);
+  }, [formValues.numberOfOutput, setNumberOfOutput]);
+
   return (
-    <div className="mx-2 my-2 sm:max-w-[400px] px-4 py-8 flex flex-col flex-wrap gap-5 border border-black rounded">
-      <h1>Configure Test</h1>
+    <div className="mx-2 my-2 px-4 py-8 flex flex-col flex-wrap gap-5 border border-black rounded w-auto">
+      <div className="border-b-2 pb-2 mb-4">
+        <h1 className="text-2xl text-gray-900 dark:text-white">
+          Configure Isolation Test
+        </h1>
+      </div>
 
       <SelectInput
         id="outputToChassis"
