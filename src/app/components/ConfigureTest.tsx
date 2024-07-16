@@ -1,45 +1,45 @@
-"use client";
+// ConfigureTest.tsx
 import React from "react";
-import { useConfigureTest } from "../hooks/useConfigureTest";
 import { SelectInput } from "./SelectInput";
 
 type ConfigureTestProps = {
-  setNumberOfOutput: React.Dispatch<React.SetStateAction<string>>;
+  outputToChassis: string;
+  setOutputToChassis: (value: string) => void;
+  inputToChassis: string;
+  setInputToChassis: (value: string) => void;
+  inputToOutput: string;
+  setInputToOutput: (value: string) => void;
+  outputToOutput: string;
+  setOutputToOutput: (value: string) => void;
+  numberOfOutput: string;
+  setNumberOfOutput: (value: string) => void;
+  isLoading: boolean;
+  allSelectsHaveValue: () => boolean;
+  handleTestClick: () => void;
+  voltageOptions: { value: string; label: string }[];
+  outputOptions: { value: string; label: string }[];
 };
 
-const voltageOptions = [
-  { value: "50", label: "50 Volt" },
-  { value: "100", label: "100 Volt" },
-  { value: "200", label: "200 Volt" },
-  { value: "500", label: "500 Volt" },
-  { value: "1000", label: "1000 Volt" },
-  { value: "1500", label: "1500 Volt" },
-];
-
-const outputOptions = Array.from({ length: 8 }, (_, i) => ({
-  value: `${i + 1}`,
-  label: `${i + 1}`,
-}));
-
 export const ConfigureTest: React.FC<ConfigureTestProps> = ({
+  outputToChassis,
+  setOutputToChassis,
+  inputToChassis,
+  setInputToChassis,
+  inputToOutput,
+  setInputToOutput,
+  outputToOutput,
+  setOutputToOutput,
+  numberOfOutput,
   setNumberOfOutput,
+  isLoading,
+  allSelectsHaveValue,
+  handleTestClick,
+  voltageOptions,
+  outputOptions,
 }) => {
-  const {
-    formValues,
-    isLoading,
-    handleSelectChange,
-    allSelectsHaveValue,
-    handleTestClick,
-  } = useConfigureTest();
-
-  // Update the parent's state when numberOfOutput changes
-  React.useEffect(() => {
-    setNumberOfOutput(formValues.numberOfOutput);
-  }, [formValues.numberOfOutput, setNumberOfOutput]);
-
   return (
-    <div className="mx-2 my-2 px-4 py-8 flex flex-col flex-wrap gap-5 border border-black rounded w-auto">
-      <div className="border-b-2 pb-2 mb-4">
+    <div className="mx-2 my-2 px-4 py-8 flex flex-col flex-wrap gap-5   rounded w-auto  bg-white/30 shadow-xl">
+      <div className="border-b-2 pb-2 mb-4 ">
         <h1 className="text-2xl text-gray-900 dark:text-white">
           Configure Isolation Test
         </h1>
@@ -48,40 +48,40 @@ export const ConfigureTest: React.FC<ConfigureTestProps> = ({
       <SelectInput
         id="outputToChassis"
         label="Output To Chassis"
-        value={formValues.outputToChassis}
-        onChange={handleSelectChange}
+        value={outputToChassis}
+        onChange={(e) => setOutputToChassis(e.target.value)}
         options={voltageOptions}
       />
 
       <SelectInput
         id="inputToChassis"
         label="Input To Chassis"
-        value={formValues.inputToChassis}
-        onChange={handleSelectChange}
+        value={inputToChassis}
+        onChange={(e) => setInputToChassis(e.target.value)}
         options={voltageOptions}
       />
 
       <SelectInput
         id="inputToOutput"
         label="Input To Output"
-        value={formValues.inputToOutput}
-        onChange={handleSelectChange}
+        value={inputToOutput}
+        onChange={(e) => setInputToOutput(e.target.value)}
         options={voltageOptions}
       />
 
       <SelectInput
         id="outputToOutput"
         label="Output To Output"
-        value={formValues.outputToOutput}
-        onChange={handleSelectChange}
+        value={outputToOutput}
+        onChange={(e) => setOutputToOutput(e.target.value)}
         options={voltageOptions}
       />
 
       <SelectInput
         id="numberOfOutput"
         label="Number Of Output"
-        value={formValues.numberOfOutput}
-        onChange={handleSelectChange}
+        value={numberOfOutput}
+        onChange={(e) => setNumberOfOutput(e.target.value)}
         options={outputOptions}
       />
 
