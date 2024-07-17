@@ -1,5 +1,4 @@
 // components/Input.tsx (or Input.jsx if not using TypeScript)
-"use client";
 import React from "react";
 
 interface Props {

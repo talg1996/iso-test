@@ -1,7 +1,3 @@
-// InputOutputs.tsx
-"use client";
-import React from "react";
-
 type Props = {
   Output: number;
   testResults: { [key: string]: "Pass" | "Fail" | null | undefined };
@@ -31,7 +27,7 @@ export const InputOutputs: React.FC<Props> = ({ Output, testResults }) => {
       <div
         id={id}
         key={index}
-        className={`m-2 px-4 py-8 border border-black rounded ${bgColor} hover:scale-125 transition-transform duration-300`}
+        className={`m-2 px-4 py-8 border border-black rounded ${bgColor} hover:scale-125 transform-gpu transition-transform duration-300`}
       >
         <p className="text-center font-bold sm:text-2xl">{id}</p>
         {result && <p className="text-center mt-2">{result}</p>}

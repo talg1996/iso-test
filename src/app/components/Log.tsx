@@ -1,6 +1,3 @@
-// Log.tsx
-"use client";
-import React from "react";
 type Props = {
   testResult: string;
   detailesResult: string;
@@ -24,7 +21,7 @@ export const Log: React.FC<Props> = ({ testResult, detailesResult }) => {
 
       <div className="flex justify-center items-center mx-2 my-2 ">
         <div
-          className={` px-4 py-8 border border-black rounded hover:scale-125 transition-transform duration-300  ${
+          className={` px-4 py-8 border border-black rounded hover:scale-125 transform-gpu transition-transform duration-300  ${
             testResult === "Pass"
               ? color.green
               : testResult === "Fail"

@@ -20,11 +20,11 @@ const outputOptions = Array.from({ length: 30 }, (_, i) => ({
 }));
 
 export default function ConfigureTestPage() {
-  const [outputToChassis, setOutputToChassis] = useState("");
-  const [inputToChassis, setInputToChassis] = useState("");
-  const [inputToOutput, setInputToOutput] = useState("");
-  const [outputToOutput, setOutputToOutput] = useState("");
-  const [numberOfOutput, setNumberOfOutput] = useState("");
+  const [outputToChassis, setOutputToChassis] = useState<string>("");
+  const [inputToChassis, setInputToChassis] = useState<string>("");
+  const [inputToOutput, setInputToOutput] = useState<string>("");
+  const [outputToOutput, setOutputToOutput] = useState<string>("");
+  const [numberOfOutput, setNumberOfOutput] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [passOrFail, setPassOrFail] = useState<string>("Wait test");
   const [testResults, setTestResults] = useState<{
@@ -32,7 +32,7 @@ export default function ConfigureTestPage() {
   }>({});
   const [detailsResult, setDetailsResult] = useState<string>("");
 
-  const allSelectsHaveValue = () => {
+  const allSelectsHaveValue = (): boolean => {
     return (
       outputToChassis !== "" &&
       inputToChassis !== "" &&

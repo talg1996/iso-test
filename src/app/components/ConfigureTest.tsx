@@ -90,13 +90,26 @@ export const ConfigureTest: React.FC<ConfigureTestProps> = ({
           type="button"
           disabled={!allSelectsHaveValue() || isLoading}
           onClick={handleTestClick}
-          className={`focus:outline-none text-white font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ${
+          className={`focus:outline-none text-white font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 flex gap-2 ${
             allSelectsHaveValue() && !isLoading
               ? "bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
               : "bg-gray-300 cursor-not-allowed"
           }`}
         >
           Test
+          <svg
+            className="invert "
+            height="20px"
+            version="1.1"
+            viewBox="0 0 32 32"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Layer_1" />
+            <g id="play_x5F_alt">
+              <path d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M10,24V8l16.008,8L10,24z   " />
+            </g>
+          </svg>
         </button>
         {isLoading && (
           <div role="status">
@@ -116,6 +129,7 @@ export const ConfigureTest: React.FC<ConfigureTestProps> = ({
                 fill="currentFill"
               />
             </svg>
+
             <span className="sr-only">Loading...</span>
           </div>
         )}
